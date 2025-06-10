@@ -1,0 +1,23 @@
+SQL Magic Commands are special commands used in Jupyter notebooks or interactive Python environments (like IPython) that allow you to run SQL queries directly within the notebook cells. They simplify working with databases alongside Python code.
+The most common SQL magic command is %sql (for single-line queries) and %%sql (for multi-line queries).
+These commands require installing the ipython-sql extension.
+You connect to a database using a connection string (e.g., SQLite, MySQL, PostgreSQL).
+Once connected, you can run SQL queries inline and get the results as pandas DataFrames or formatted tables.
+How to set up and use SQL magic commands:
+1. Install the ipython-sql package - pip install ipython-sql
+2. Load the SQL extension in your notebook - %load_ext sql
+3. Connect to your database
+          Use a connection string with %sql magic. Examples:
+          SQLite (file-based):  %sql sqlite:///mydatabase.db
+          PostgreSQL:  %sql postgresql://username:password@host:port/dbname
+          MySQL:   %sql mysql+pymysql://username:password@host:port/dbname
+4. Run SQL queries
+          For single-line query:   %sql SELECT * FROM tablename LIMIT 5;
+          For multi-line query: %%sql
+                                SELECT column1, column2
+                                FROM tablename
+                                WHERE condition;
+5. Fetch results (optional)
+You can assign query results to a Python variable to manipulate with pandas:
+          result = %sql SELECT * FROM tablename;
+          df = result.DataFrame()
